@@ -9,8 +9,14 @@ class Message extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'chat_id',
         'senderEmail',
         'receiveEmail',
         'message',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(Chat::class, 'chat_id');
+    }
 }

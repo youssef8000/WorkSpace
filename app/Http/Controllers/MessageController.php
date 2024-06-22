@@ -21,7 +21,7 @@ class MessageController extends Controller
 
         return view('frontend.Message.chat', ['chats' => $chats]);
     }
-    
+
 
     public function create($email)
     {
@@ -60,11 +60,13 @@ class MessageController extends Controller
 {
     $request->validate([
         'message' => 'required|string|max:255',
+        'chat_id' => 'required',
     ]);
 
     $senderEmail = Auth::user()->email;
     $receiverEmail = $email;
     Message::create([
+        'chat_id'=>$request->input('chat_id'),
         'senderEmail' => $senderEmail,
         'receiveEmail' => $receiverEmail,
         'message' => $request->input('message'),

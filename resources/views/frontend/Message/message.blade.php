@@ -29,6 +29,7 @@
 
                     <h3 style="margin-bottom: 30px">
                         {{ $chat->receiver->name }}
+
                     </h3>
 
             @else
@@ -55,6 +56,7 @@
         <form action="{{ route('chats.store', ['email' => $chatWithUser->email]) }}" method="POST">
             @csrf
             <input type="text" name="message" class="chat-input" placeholder="Type your message..." required>
+            <input type="text" name="chat_id" class="chat-input" placeholder="Type your message..." value="{{$chat->id}}" hidden required>
             <button type="submit" class="send-btn">Send</button>
         </form>
         <div class="vertical-line"></div>

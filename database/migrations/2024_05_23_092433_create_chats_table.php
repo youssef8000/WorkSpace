@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('senderEmail');
             $table->string('receiveEmail');
             $table->timestamps();
+
+            $table->foreign('senderEmail')->references('email')->on('users')->onDelete('cascade');
+            $table->foreign('receiveEmail')->references('email')->on('users')->onDelete('cascade');
+
         });
     }
 
